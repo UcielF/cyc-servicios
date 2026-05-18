@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es-AR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="C&C Servicios Integrales S.R.L — Instalaciones eléctricas de alta y media tensión, luminarias viales, infraestructura eléctrica y movimiento de suelo. Santa Fe, Argentina.">
+  <meta name="description"
+    content="C&C Servicios Integrales S.R.L — Instalaciones eléctricas de alta y media tensión, luminarias viales, infraestructura eléctrica y movimiento de suelo. Santa Fe, Argentina.">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="C&C Servicios Integrales S.R.L">
-  <meta property="og:description" content="Instalaciones eléctricas de alta y media tensión, luminarias viales, infraestructura eléctrica. Santa Fe, Argentina.">
+  <meta property="og:description"
+    content="Instalaciones eléctricas de alta y media tensión, luminarias viales, infraestructura eléctrica. Santa Fe, Argentina.">
   <meta property="og:locale" content="es_AR">
 
   <title>C&C Servicios Integrales S.R.L</title>
@@ -19,7 +22,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Google Fonts: Bebas Neue + Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700&display=swap"
+    rel="stylesheet">
 
   <!-- Estilos — orden importante: variables → base → components → sections -->
   <link rel="stylesheet" href="assets/css/variables.css">
@@ -27,6 +32,7 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/sections.css">
 </head>
+
 <body>
 
   <!-- Accesibilidad: saltar al contenido principal -->
@@ -45,13 +51,8 @@
         </a>
 
         <!-- Botón hamburger -->
-        <button
-          class="navbar__toggle"
-          aria-label="Abrir menú de navegación"
-          aria-expanded="false"
-          aria-controls="nav-overlay"
-          type="button"
-        >
+        <button class="navbar__toggle" aria-label="Abrir menú de navegación" aria-expanded="false"
+          aria-controls="nav-overlay" type="button">
           <span class="navbar__toggle-bar"></span>
           <span class="navbar__toggle-bar"></span>
           <span class="navbar__toggle-bar"></span>
@@ -64,14 +65,7 @@
   <!-- =====================================================================
        OVERLAY MENU FULLSCREEN
        ===================================================================== -->
-  <div
-    id="nav-overlay"
-    class="nav-overlay"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Menú de navegación"
-    hidden
-  >
+  <div id="nav-overlay" class="nav-overlay" role="dialog" aria-modal="true" aria-label="Menú de navegación" hidden>
     <nav class="nav-overlay__nav" aria-label="Menú principal">
       <ol class="nav-overlay__list">
         <li class="nav-overlay__item">
@@ -93,9 +87,9 @@
           </a>
         </li>
         <li class="nav-overlay__item">
-          <a href="#nosotros" class="nav-overlay__link">
+          <a href="#empresa" class="nav-overlay__link">
             <span class="nav-overlay__number" aria-hidden="true">04</span>
-            Nosotros
+            La Empresa
           </a>
         </li>
         <li class="nav-overlay__item">
@@ -111,7 +105,7 @@
     <div class="nav-overlay__contact" aria-label="Datos de contacto">
       <a href="tel:+5493497657453" class="nav-overlay__contact-link">+54 9 3497 65-7453</a>
       <a href="tel:+5491167995686" class="nav-overlay__contact-link">+54 9 11 6799-5686</a>
-      <span class="nav-overlay__contact-address">55, 1° piso, Santa Fe</span>
+      <span class="nav-overlay__contact-address">Italia 55, 1° piso, Santa Fe</span>
     </div>
 
   </div>
@@ -122,48 +116,300 @@
   <main id="main-content" tabindex="-1">
 
     <!-- Sección 1: Hero / Inicio -->
-    <section
-      id="inicio"
-      class="section section--hero"
-      aria-label="Inicio"
-    >
-      <!-- Etapa 3: contenido del hero -->
+    <section id="inicio" class="section section--hero" aria-label="Inicio">
+      <!-- Fondo: imagen con overlay -->
+      <div class="hero__bg" aria-hidden="true">
+        <img class="hero__bg-img"
+          src="https://images.unsplash.com/photo-1509391111737-9b07f052f6b6?w=1920&q=85&fit=crop&auto=format" alt=""
+          fetchpriority="high">
+        <div class="hero__bg-overlay"></div>
+      </div>
+
+      <!-- Contenido principal -->
+      <div class="container hero__content">
+        <div class="hero__inner">
+          <span class="hero__eyebrow">Santa Fe · Argentina</span>
+          <h1 class="hero__title">
+            Infraestructura<br>
+            Eléctrica (?)<br>
+            <span class="hero__title-accent">De Media y Baja Tensión</span>
+          </h1>
+          <p class="hero__subtitle">
+            Media y baja tensión, luminarias viales, tendidos subterráneos e infraestructura industrial.
+          </p>
+          <div class="hero__actions">
+            <a href="#servicios" class="btn btn--primary">Ver servicios</a>
+            <a href="#contacto" class="btn btn--ghost">Contactanos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Indicador de scroll -->
+      <div class="hero__scroll" aria-hidden="true">
+        <div class="hero__scroll-line"></div>
+      </div>
     </section>
 
     <!-- Sección 2: Servicios -->
-    <section
-      id="servicios"
-      class="section section--servicios"
-      aria-label="Servicios"
-    >
-      <!-- Etapa 4: grid de servicios -->
+    <section id="servicios" class="section section--servicios" aria-label="Servicios">
+      <div class="container">
+
+        <header class="section-header">
+          <span class="section-eyebrow">Lo que hacemos</span>
+          <h2 class="section-title">Servicios - Acá hay que agregar los servicios reales</h2>
+        </header>
+
+        <div class="servicios-grid">
+
+          <!-- Card 1: Alta y Media Tensión -->
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="assets/img/servicios/transformador.jpg" alt="Alta y Media Tensión" loading="lazy"
+                decoding="async">
+            </figure>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Alta y Media Tensión</h3>
+              <p class="service-card__desc">Instalación y mantenimiento de redes eléctricas en ámbitos urbanos e
+                industriales.</p>
+            </div>
+          </article>
+
+          <!-- Card 2: Luminarias Viales -->
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="assets/img/servicios/servicio2.jpg" alt="Luminarias Viales" loading="lazy" decoding="async">
+            </figure>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Luminarias Viales</h3>
+              <p class="service-card__desc">Montaje y recambio de luminarias en rutas, accesos y espacios públicos.</p>
+            </div>
+          </article>
+
+          <!-- Card 3: Tendidos Subterráneos -->
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="assets/img/servicios/tendidos-subterraneos.jpeg" alt="Tendidos Subterráneos" loading="lazy"
+                decoding="async">
+            </figure>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Tendidos Subterráneos</h3>
+              <p class="service-card__desc">Canalización e instalación de cables de baja y media tensión en zanjas y
+                ductos.</p>
+            </div>
+          </article>
+
+          <!-- Card 4: Infraestructura Industrial -->
+          <article class="service-card">
+            <figure class="service-card__media">
+              <img src="assets/img/servicios/ducto2.jpeg" alt="Infraestructura Industrial" loading="lazy"
+                decoding="async">
+            </figure>
+            <div class="service-card__body">
+              <h3 class="service-card__title">Infraestructura Industrial</h3>
+              <p class="service-card__desc">Electrificación de plantas industriales y establecimientos rurales con
+                maquinaria propia.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section>
 
     <!-- Sección 3: Proyectos / Portfolio -->
-    <section
-      id="proyectos"
-      class="section section--proyectos"
-      aria-label="Proyectos"
-    >
-      <!-- Etapa 5: galería filtrable -->
+    <section id="proyectos" class="section section--proyectos" aria-label="Proyectos">
+      <div class="container proyectos-placeholder">
+        <span class="proyectos-placeholder__eyebrow">Portfolio</span>
+        <p class="proyectos-placeholder__title">Galería de proyectos — fijate que podes armar (?)</p>
+      </div>
     </section>
 
-    <!-- Sección 4: Nosotros -->
-    <section
-      id="nosotros"
-      class="section section--nosotros"
-      aria-label="Nosotros"
-    >
-      <!-- Etapa 6: stats animados + texto institucional -->
+    <!-- Sección 4: La Empresa -->
+    <section id="empresa" class="section section--empresa" aria-label="La Empresa">
+
+      <!-- Fondo con parallax -->
+      <div class="empresa__bg" aria-hidden="true">
+        <picture>
+          <source media="(min-width: 768px)" srcset="assets/img/empresa/empresa.jpg">
+          <img class="empresa__bg-img" src="assets/img/empresa/empresa-mobile.jpg" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="empresa__bg-overlay"></div>
+      </div>
+
+      <!-- Header + manifesto -->
+      <div class="container empresa__intro">
+        <header class="section-header">
+          <span class="section-eyebrow">La Empresa</span>
+          <h2 class="section-title">Quiénes<br>Somos</h2>
+        </header>
+        <p class="empresa__manifesto">
+          Más de una década ejecutando proyectos eléctricos de alta complejidad en Santa Fe y la región.
+        </p>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="empresa__stats">
+        <div class="container empresa__stats-grid">
+
+          <div class="empresa-stat">
+            <span class="empresa-stat__number" data-target="5" data-suffix="+">0</span>
+            <span class="empresa-stat__label">Años de experiencia (?)</span>
+          </div>
+
+          <div class="empresa-stat">
+            <span class="empresa-stat__number" data-target="300" data-suffix="+">0</span>
+            <span class="empresa-stat__label">Proyectos realizados (?)</span>
+          </div>
+
+          <div class="empresa-stat">
+            <span class="empresa-stat__number" data-target="100" data-suffix="%">0</span>
+            <span class="empresa-stat__label">Dato (?)</span>
+          </div>
+
+          <div class="empresa-stat">
+            <span class="empresa-stat__number" data-target="4" data-suffix="">0</span>
+            <span class="empresa-stat__label">Dato (?)</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Split: imagen + descripción -->
+      <div class="empresa__split">
+
+        <div class="empresa__split-image">
+          <img src="assets/img/empresa/tarjeta.jpg" alt="Tarjeta comercial C&amp;C Servicios Integrales" loading="lazy"
+            decoding="async">
+        </div>
+
+        <div class="empresa__split-body">
+          <p class="empresa__description">
+            Somos C&amp;C Servicios Integrales, nos especializamos en instalaciones y mantenimiento eléctrico de alta y
+            media tensión. Operamos con maquinaria propia y un equipo técnico calificado, lo que nos permite afrontar
+            proyectos de gran escala con control total sobre cada etapa de la obra. (Hay que modificar servicios).
+          </p>
+          <ul class="empresa__valores">
+            <li class="empresa__valor">
+              <span class="empresa__valor-title">Maquinaria</span>
+              <span class="empresa__valor-desc">Equipos de tendido y movimiento de suelo. Sin tercerización de
+                medios.</span>
+            </li>
+            <li class="empresa__valor">
+              <span class="empresa__valor-title">Alta tensión certificada</span>
+              <span class="empresa__valor-desc">Capacidad técnica para trabajos en redes de alta complejidad bajo
+                normativa vigente.</span>
+            </li>
+            <li class="empresa__valor">
+              <span class="empresa__valor-title">Equipo especializado</span>
+              <span class="empresa__valor-desc">Profesionales formados en seguridad eléctrica y con experiencia en obra
+                de campo.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Mapa de ubicación -->
+      <div class="empresa__mapa-wrap">
+        <div class="empresa__mapa-header">
+          <div class="empresa__mapa-address">
+            <span class="empresa__mapa-label">Ubicación</span>
+            <span class="empresa__mapa-place">Italia 55, Humberto I°, Santa Fe</span>
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Italia+55,+Humberto+I,+Santa+Fe,+Argentina"
+            class="btn btn--ghost" target="_blank" rel="noopener noreferrer">
+            Cómo llegar
+          </a>
+        </div>
+        <div class="empresa__mapa" aria-label="Mapa de ubicación">
+          <iframe
+            src="https://maps.google.com/maps?q=Italia+55,+Humberto+I,+Santa+Fe,+Argentina&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+            title="Ubicación C&amp;C Servicios — Italia 55, Humberto I°, Santa Fe" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
     </section>
 
     <!-- Sección 5: Contacto -->
-    <section
-      id="contacto"
-      class="section section--contacto"
-      aria-label="Contacto"
-    >
-      <!-- Etapa 6: formulario + datos de contacto -->
+    <section id="contacto" class="section section--contacto" aria-label="Contacto">
+      <div class="container">
+
+        <header class="section-header">
+          <span class="section-eyebrow">Contacto</span>
+          <h2 class="section-title">Hablemos</h2>
+        </header>
+
+        <div class="contacto-grid">
+
+          <!-- Formulario -->
+          <div class="contacto-form-wrap">
+            <form class="contacto-form" novalidate>
+              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY">
+              <input type="hidden" name="subject" value="Consulta desde el sitio web — C&C Servicios">
+              <input type="hidden" name="from_name" value="Sitio web C&C Servicios">
+              <!-- Honeypot antispam -->
+              <input type="checkbox" name="botcheck" style="display:none">
+
+              <div class="form-group">
+                <label class="form-label" for="nombre">Nombre</label>
+                <input class="form-input" type="text" id="nombre" name="nombre" autocomplete="name" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-input" type="email" id="email" name="email" autocomplete="email" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="telefono">Teléfono <span
+                    class="form-label__opt">(opcional)</span></label>
+                <input class="form-input" type="tel" id="telefono" name="telefono" autocomplete="tel">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="mensaje">Mensaje</label>
+                <textarea class="form-input form-input--textarea" id="mensaje" name="mensaje" rows="5"
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary contacto-form__submit">
+                Enviar mensaje
+              </button>
+
+              <p class="form-status" role="status" aria-live="polite" hidden></p>
+            </form>
+          </div>
+
+          <!-- Datos de contacto -->
+          <aside class="contacto-info" aria-label="Datos de contacto">
+
+            <div class="contacto-info__block">
+              <span class="contacto-info__label">Teléfonos</span>
+              <a href="tel:+5493497657453" class="contacto-info__value contacto-info__link">+54 9 3497 65-7453</a>
+              <a href="tel:+5491167995686" class="contacto-info__value contacto-info__link">+54 9 11 6799-5686</a>
+            </div>
+
+            <div class="contacto-info__block">
+              <span class="contacto-info__label">Dirección</span>
+              <span class="contacto-info__value">Italia 55, 1° piso</span>
+              <span class="contacto-info__value">Santa Fe, Argentina</span>
+            </div>
+
+            <div class="contacto-info__block">
+              <span class="contacto-info__label">Instagram</span>
+              <a href="https://instagram.com/C&CServiciosIntegrales" class="contacto-info__value contacto-info__link"
+                target="_blank" rel="noopener noreferrer">@C&CServiciosIntegrales</a>
+            </div>
+
+            <a href="https://wa.me/5493497657453" class="btn btn--ghost contacto-info__whatsapp" target="_blank"
+              rel="noopener noreferrer">
+              Escribir por WhatsApp
+            </a>
+
+          </aside>
+
+        </div>
+      </div>
     </section>
 
   </main>
@@ -172,20 +418,57 @@
        FOOTER
        ===================================================================== -->
   <footer class="site-footer" role="contentinfo">
-    <!-- Etapa 7: logo, datos legales, links rápidos, redes sociales -->
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Logo + descripción -->
+        <div class="footer-brand">
+          <a href="#inicio" class="footer-logo" aria-label="C&C Servicios — volver al inicio">C&C</a>
+          <p class="footer-tagline">Infraestructura eléctrica de alta y media tensión. Santa Fe, Argentina.</p>
+        </div>
+
+        <!-- Navegación rápida -->
+        <nav class="footer-nav" aria-label="Navegación rápida">
+          <span class="footer-col__title">Secciones</span>
+          <ul class="footer-nav__list">
+            <li><a href="#inicio" class="footer-nav__link">Inicio</a></li>
+            <li><a href="#servicios" class="footer-nav__link">Servicios</a></li>
+            <li><a href="#proyectos" class="footer-nav__link">Proyectos</a></li>
+            <li><a href="#empresa" class="footer-nav__link">La Empresa</a></li>
+            <li><a href="#contacto" class="footer-nav__link">Contacto</a></li>
+          </ul>
+        </nav>
+
+        <!-- Datos de contacto -->
+        <div class="footer-contact">
+          <span class="footer-col__title">Contacto</span>
+          <a href="tel:+5493497657453" class="footer-contact__item">+54 9 3497 65-7453</a>
+          <a href="tel:+5491167995686" class="footer-contact__item">+54 9 11 6799-5686</a>
+          <span class="footer-contact__item">Italia 55, Humberto 1° piso, Santa Fe</span>
+          <a href="https://instagram.com/hernan_calvi" class="footer-contact__item" target="_blank"
+            rel="noopener noreferrer">@C&CServiciosIntegrales</a>
+        </div>
+
+      </div>
+
+      <!-- Barra inferior -->
+      <div class="footer-bottom">
+        <span class="footer-legal">&copy; 2026 C&amp;C Servicios Integrales S.R.L. Todos los derechos reservados.</span>
+      </div>
+
+    </div>
   </footer>
 
   <!-- =====================================================================
        BOTÓN FLOTANTE WHATSAPP
        ===================================================================== -->
-  <a
-    href="https://wa.me/5493497657453"
-    class="whatsapp-btn"
-    aria-label="Contactar por WhatsApp"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <!-- Etapa 6: ícono SVG de WhatsApp -->
+  <a href="https://wa.me/5493497657453" class="whatsapp-btn" aria-label="Contactar por WhatsApp" target="_blank"
+    rel="noopener noreferrer">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
   </a>
 
   <!-- =====================================================================
@@ -200,4 +483,5 @@
   <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>

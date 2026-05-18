@@ -59,6 +59,7 @@ function initNav() {
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Abrir menú de navegación");
     document.body.style.overflow = "";
+    requestAnimationFrame(() => { onScroll(); });
 
     /* Foco de vuelta al botón toggle */
     toggle.focus();

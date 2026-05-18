@@ -1,0 +1,233 @@
+/* ==========================================================================
+   components.css — Componentes reutilizables
+   C&C Servicios Integrales S.R.L
+   ========================================================================== */
+
+
+/* === NAVBAR ================================================================ */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-overlay);   /* 50 — siempre sobre el overlay */
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    backdrop-filter var(--transition-slow);
+}
+
+.navbar {
+  height: var(--navbar-height-mobile);
+}
+
+@media (min-width: 1024px) {
+  .navbar {
+    height: var(--navbar-height-desktop);
+  }
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo */
+.navbar__logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar__logo-text {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--color-text);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  transition: color var(--transition-fast);
+}
+
+.navbar__logo:hover .navbar__logo-text,
+.navbar__logo:focus-visible .navbar__logo-text {
+  color: var(--color-accent);
+}
+
+/* Botón hamburger */
+.navbar__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+}
+
+.navbar__toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transform-origin: center;
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+/* Navbar con scroll: fondo oscuro con blur */
+.site-header--scrolled {
+  background-color: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Hamburger → X (distancia barra-a-barra: altura 2px + gap 6px = 8px) */
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+
+/* === OVERLAY MENU FULLSCREEN =============================================== */
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay-bg);  /* 30 — debajo del header (50) */
+  background-color: var(--color-overlay);
+  display: flex;
+  flex-direction: column;
+  /* padding-top compensa la navbar fija; padding-bottom deja espacio al bloque de contacto */
+  padding: var(--navbar-height-mobile) var(--space-8) 120px;
+  opacity: 0;  /* GSAP anima desde aquí */
+}
+
+/* Contenedor del nav: ocupa el espacio restante y centra la lista verticalmente */
+.nav-overlay__nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.nav-overlay__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nav-overlay__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 9vw, 5rem);
+  line-height: 1.05;
+  color: var(--color-text);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-base);
+  will-change: transform, opacity;
+}
+
+.nav-overlay__link:hover,
+.nav-overlay__link:focus-visible {
+  color: var(--color-accent);
+  transform: translateX(14px);
+  outline: none;
+}
+
+.nav-overlay__number {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  letter-spacing: 0.12em;
+  align-self: center;
+  transition: color var(--transition-fast);
+}
+
+.nav-overlay__link:hover .nav-overlay__number,
+.nav-overlay__link:focus-visible .nav-overlay__number {
+  color: var(--color-accent);
+}
+
+/* Bloque de contacto, anclado al fondo del overlay */
+.nav-overlay__contact {
+  position: absolute;
+  bottom: var(--space-10);
+  left: var(--space-8);
+  right: var(--space-8);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.nav-overlay__contact-link,
+.nav-overlay__contact-address {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  transition: color var(--transition-fast);
+}
+
+.nav-overlay__contact-link:hover {
+  color: var(--color-accent);
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .nav-overlay {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  .nav-overlay__contact {
+    left: var(--space-16);
+    right: var(--space-16);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .nav-overlay {
+    padding-top: var(--navbar-height-desktop);
+    padding-left: var(--space-24);
+    padding-right: var(--space-24);
+  }
+
+  .nav-overlay__contact {
+    left: var(--space-24);
+    right: var(--space-24);
+  }
+}
+
+
+/* === Etapa 3: Hero (botones CTA, scroll indicator) ========================= */
+/* === Etapa 4: Cards de servicios =========================================== */
+/* === Etapa 5: Galería / lightbox =========================================== */
+/* === Etapa 6: Formulario de contacto ======================================= */
+/* === Etapa 6: Botón flotante WhatsApp ====================================== */
+/* === Etapa 7: Footer ======================================================= */

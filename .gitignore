@@ -1,0 +1,109 @@
+# ============================================
+# C&C Servicios Integrales - .gitignore
+# ============================================
+
+# --- Credenciales y configuración sensible ---
+.env
+.env.*
+*.local
+config.local.*
+credenciales.*
+*.key
+*.pem
+*.p12
+
+# --- Deploy y FTP (Hostinger) ---
+.ftp-deploy.json
+deploy-config.*
+.deployignore
+ftp-credentials.*
+
+# --- Sistema operativo (Fedora/KDE) ---
+.directory
+.Trash-*
+*.swp
+*.swo
+*~
+
+# --- macOS (por si compartís con alguien en Mac) ---
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# --- Windows ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Editores e IDEs ---
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+.history/
+
+# --- Claude Code ---
+.claude/
+!.claude/skills/
+.aider*
+
+# --- Node (si usás herramientas dev locales) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.npm/
+.yarn/
+
+# --- Logs ---
+*.log
+logs/
+error_log
+access_log
+
+# --- Archivos temporales ---
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.orig
+
+# --- Documentación interna del cliente (no compartir) ---
+/docs/internal/
+/docs/presupuestos/
+/docs/contratos/
+/docs/clientes/
+*-PRIVADO.*
+*-INTERNO.*
+
+# --- Imágenes pesadas sin procesar ---
+/assets/img/raw/
+/assets/img/original/
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# --- Compresiones y exports ---
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# --- Cache y builds ---
+.cache/
+.parcel-cache/
+dist/
+build/
+.tmp/
+
+# --- Tests locales y screenshots de prueba ---
+/test-screenshots/
+/local-tests/

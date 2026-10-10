@@ -35,6 +35,8 @@
   --color-border:       rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(245, 196, 0, 0.35);
   --color-overlay:      rgba(13, 13, 13, 0.96);
+  --color-surface-light: #b8b7b7;          /* fondo claro — sección Servicios */
+  --color-text-invert:   #0d0d0d;          /* texto negro sobre fondo claro */
 
   /* --- Tipografía — Familias --- */
   --font-display: "Bebas Neue", "Bebas Neue Fallback", sans-serif;
@@ -114,6 +116,7 @@
   --z-sticky:     20;   /* navbar fija */
   --z-overlay-bg: 30;   /* fondo del menú fullscreen */
   --z-overlay:    50;   /* links del menú, lightbox */
+  --z-modal:      90;   /* modal servicios — sobre header (50), bajo toast */
   --z-toast:     100;   /* notificaciones */
 
   /* --- Navbar --- */

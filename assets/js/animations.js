@@ -113,9 +113,27 @@ function initAnimations() {
     }
   );
 
-  /* --- La Empresa: split — cuerpo de texto --------------------------------- */
+  /* --- La Empresa: párrafo introductorio desde el borde izquierdo ---------- */
+  gsap.fromTo(".empresa__intro-text",
+    { x: -100, opacity: 0 },
+    {
+      x: 0, opacity: 1, duration: 1, ease: "power3.out",
+      scrollTrigger: { trigger: ".empresa__intro-text", start: "top 82%" },
+    }
+  );
+
+  /* --- La Empresa: split — tarjeta desde el borde izquierdo ---------------- */
+  gsap.fromTo(".empresa__split-image",
+    { x: -120, opacity: 0 },
+    {
+      x: 0, opacity: 1, duration: 1, ease: "power3.out",
+      scrollTrigger: { trigger: ".empresa__split", start: "top 75%" },
+    }
+  );
+
+  /* --- La Empresa: split — sectores desde el borde derecho ----------------- */
   gsap.fromTo(".empresa__split-body",
-    { x: 40, opacity: 0 },
+    { x: 120, opacity: 0 },
     {
       x: 0, opacity: 1, duration: 1, ease: "power3.out",
       scrollTrigger: { trigger: ".empresa__split", start: "top 75%" },
@@ -127,6 +145,15 @@ function initAnimations() {
     {
       y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power2.out",
       scrollTrigger: { trigger: ".empresa__valores", start: "top 85%" },
+    }
+  );
+
+  /* --- La Empresa: párrafos de cierre desde el borde derecho --------------- */
+  gsap.fromTo(".empresa__closing-text",
+    { x: 100, opacity: 0 },
+    {
+      x: 0, opacity: 1, duration: 1, ease: "power3.out",
+      scrollTrigger: { trigger: ".empresa__closing-text", start: "top 85%" },
     }
   );
 

@@ -119,9 +119,7 @@
     <section id="inicio" class="section section--hero" aria-label="Inicio">
       <!-- Fondo: imagen con overlay -->
       <div class="hero__bg" aria-hidden="true">
-        <img class="hero__bg-img"
-          src="https://images.unsplash.com/photo-1509391111737-9b07f052f6b6?w=1920&q=85&fit=crop&auto=format" alt=""
-          fetchpriority="high">
+        <img class="hero__bg-img" src="assets/img/hero/construction.jpeg" alt="" fetchpriority="high">
         <div class="hero__bg-overlay"></div>
       </div>
 
@@ -135,7 +133,7 @@
             <span class="hero__title-accent"></span>
           </h1>
           <p class="hero__subtitle">
-            Obras viales, civiles, electricidad y de servicios urbanos e industriales.
+            Obras viales, civiles, eléctricas y servicios urbanos e industriales.
           </p>
           <div class="hero__actions">
             <a href="#servicios" class="btn btn--primary">Ver servicios</a>
@@ -163,6 +161,8 @@
 
           <!-- Card 1: Alta y Media Tensión -->
           <article class="service-card">
+            <button class="service-card__trigger" type="button" aria-haspopup="dialog"
+              aria-label="Ver detalle: Media y Baja Tensión"></button>
             <figure class="service-card__media">
               <img src="assets/img/servicios/transformador.jpg" alt="Alta y Media Tensión" loading="lazy"
                 decoding="async">
@@ -176,6 +176,8 @@
 
           <!-- Card 2: Luminarias Viales -->
           <article class="service-card">
+            <button class="service-card__trigger" type="button" aria-haspopup="dialog"
+              aria-label="Ver detalle: Luminarias Viales"></button>
             <figure class="service-card__media">
               <img src="assets/img/servicios/servicio2.jpg" alt="Luminarias Viales" loading="lazy" decoding="async">
             </figure>
@@ -187,6 +189,8 @@
 
           <!-- Card 3: Tendidos Subterráneos -->
           <article class="service-card">
+            <button class="service-card__trigger" type="button" aria-haspopup="dialog"
+              aria-label="Ver detalle: Tendidos Subterráneos"></button>
             <figure class="service-card__media">
               <img src="assets/img/servicios/tendidos-subterraneos.jpeg" alt="Tendidos Subterráneos" loading="lazy"
                 decoding="async">
@@ -200,6 +204,8 @@
 
           <!-- Card 4: Infraestructura Industrial -->
           <article class="service-card">
+            <button class="service-card__trigger" type="button" aria-haspopup="dialog"
+              aria-label="Ver detalle: Infraestructura Industrial"></button>
             <figure class="service-card__media">
               <img src="assets/img/servicios/ducto2.jpeg" alt="Infraestructura Industrial" loading="lazy"
                 decoding="async">
@@ -273,39 +279,59 @@
         </div>
       </div>
 
-      <!-- Split: imagen + descripción -->
+      <!-- Párrafo introductorio, sobre la tarjeta -->
+      <div class="container empresa__intro-text">
+        <p class="empresa__description">
+          C&amp;C Servicios Integrales S.R.L. es una compañía con sede en Sunchales, Santa Fe, especializada en el
+          desarrollo integral de proyectos de ingeniería, construcción y servicios operativos para infraestructura
+          pública y privada.
+        </p>
+      </div>
+
+      <!-- Split: imagen + sectores -->
       <div class="empresa__split">
 
         <div class="empresa__split-image">
-          <img src="assets/img/empresa/tarjeta.jpg" alt="Tarjeta comercial C&amp;C Servicios Integrales" loading="lazy"
+          <img src="assets/img/empresa/tarjeta.jpeg" alt="Tarjeta comercial C&amp;C Servicios Integrales" loading="lazy"
             decoding="async">
         </div>
 
         <div class="empresa__split-body">
-          <p class="empresa__description">
-            Somos C&amp;C Servicios Integrales, nos especializamos en instalaciones y mantenimiento eléctrico de alta y
-            media tensión. Operamos con maquinaria propia y un equipo técnico calificado, lo que nos permite afrontar
-            proyectos de gran escala con control total sobre cada etapa de la obra. (Hay que modificar servicios).
-          </p>
+          <p class="empresa__lead">Nuestra capacidad operativa comprende los siguientes sectores técnicos e
+            industriales:</p>
           <ul class="empresa__valores">
             <li class="empresa__valor">
-              <span class="empresa__valor-title">Maquinaria</span>
-              <span class="empresa__valor-desc">Equipos de tendido y movimiento de suelo. Sin tercerización de
-                medios.</span>
+              <span class="empresa__valor-title">Infraestructura y Vialidad</span>
+              <span class="empresa__valor-desc">Gestión integral, desde el estudio y diseño hasta la dirección y
+                ejecución de obras civiles, incluyendo la conservación y explotación de redes viales.</span>
             </li>
             <li class="empresa__valor">
-              <span class="empresa__valor-title">Alta tensión certificada</span>
-              <span class="empresa__valor-desc">Capacidad técnica para trabajos en redes de alta complejidad bajo
-                normativa vigente.</span>
+              <span class="empresa__valor-title">Servicios Urbanos e Industriales</span>
+              <span class="empresa__valor-desc">Mantenimiento especializado de instalaciones e infraestructuras en
+                entornos urbanos e industriales.</span>
             </li>
             <li class="empresa__valor">
-              <span class="empresa__valor-title">Equipo especializado</span>
-              <span class="empresa__valor-desc">Profesionales formados en seguridad eléctrica y con experiencia en obra
-                de campo.</span>
+              <span class="empresa__valor-title">Energía y Obras Hidráulicas</span>
+              <span class="empresa__valor-desc">Desarrollo de proyectos vinculados a la transformación, transporte y
+                distribución de energía y gas, así como la gestión de obras hidráulicas para el manejo del recurso
+                hídrico.</span>
             </li>
           </ul>
         </div>
 
+      </div>
+
+      <!-- Párrafos de cierre, debajo de la tarjeta -->
+      <div class="container empresa__closing-text">
+        <p class="empresa__description">
+          Contamos con la flexibilidad jurídica y operativa necesaria para actuar de manera independiente o mediante
+          Uniones Transitorias (UT) y consorcios de colaboración, facilitando nuestra participación en proyectos de
+          gran envergadura junto a socios estratégicos.
+        </p>
+        <p class="empresa__description">
+          Comprometidos con los más altos estándares de calidad y eficiencia, ofrecemos soluciones técnicas rigurosas
+          orientadas a impulsar el desarrollo productivo y la infraestructura de la región.
+        </p>
       </div>
 
       <!-- Mapa de ubicación -->
@@ -401,7 +427,7 @@
                 target="_blank" rel="noopener noreferrer">@hernan_calvi</a>
             </div>
 
-            <a href="https://wa.me/5493497657453" class="btn btn--ghost contacto-info__whatsapp" target="_blank"
+            <a href="https://wa.me/5493497657453?text=Hola%2C%20me%20comunico%20desde%20la%20web%20de%20C%26C%20Servicios%20Integrales.%20Quisiera%20hacer%20una%20consulta%20sobre%20sus%20servicios." class="btn btn--ghost contacto-info__whatsapp" target="_blank"
               rel="noopener noreferrer">
               Escribir por WhatsApp
             </a>
@@ -413,6 +439,30 @@
     </section>
 
   </main>
+
+  <!-- =====================================================================
+       MODAL DE SERVICIOS (reutilizable — se rellena vía JS)
+       ===================================================================== -->
+  <div id="servicio-modal" class="servicio-modal" role="dialog" aria-modal="true"
+    aria-labelledby="servicio-modal-title" hidden>
+    <div class="servicio-modal__backdrop" data-close></div>
+    <div class="servicio-modal__dialog">
+      <button class="servicio-modal__close" type="button" aria-label="Cerrar" data-close>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <figure class="servicio-modal__media">
+        <img src="" alt="" decoding="async">
+      </figure>
+      <div class="servicio-modal__body">
+        <h3 id="servicio-modal-title" class="servicio-modal__title"></h3>
+        <p class="servicio-modal__desc"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- =====================================================================
        FOOTER
@@ -463,7 +513,7 @@
   <!-- =====================================================================
        BOTÓN FLOTANTE WHATSAPP
        ===================================================================== -->
-  <a href="https://wa.me/5493497657453" class="whatsapp-btn" aria-label="Contactar por WhatsApp" target="_blank"
+  <a href="https://wa.me/5493497657453?text=Hola%2C%20me%20comunico%20desde%20la%20web%20de%20C%26C%20Servicios%20Integrales.%20Quisiera%20hacer%20una%20consulta%20sobre%20sus%20servicios." class="whatsapp-btn" aria-label="Contactar por WhatsApp" target="_blank"
     rel="noopener noreferrer">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path

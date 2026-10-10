@@ -51,10 +51,11 @@ function initAnimations() {
   );
 
   gsap.fromTo(".service-card",
-    { y: 50, opacity: 0 },
+    { y: 64, opacity: 0 },
     {
-      y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "power3.out",
-      scrollTrigger: { trigger: ".servicios-grid", start: "top 82%" },
+      y: 0, opacity: 1, duration: 0.8, stagger: 0.14, ease: "power3.out",
+      clearProps: "transform",  /* libera el transform inline → el hover translateY vuelve a funcionar */
+      scrollTrigger: { trigger: ".servicios-grid", start: "top 85%" },
     }
   );
   /* --- La Empresa: parallax fondo ----------------------------------------- */

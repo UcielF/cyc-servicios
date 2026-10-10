@@ -139,9 +139,19 @@
   background-color: var(--color-surface-light);
 }
 
-/* Título en negro sobre el fondo claro (solo en esta sección) */
+/* Rótulo "Lo que hacemos": fondo oscuro ceñido a las letras para resaltar el
+   amarillo sobre el fondo claro (tipo etiqueta) */
+.section--servicios .section-eyebrow {
+  display: inline-block;
+  background-color: var(--color-bg);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+/* Título en negro con sombra sutil sobre el fondo claro (solo en esta sección) */
 .section--servicios .section-title {
   color: var(--color-text-invert);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
 }
 
 /* Grid pegado: gap 0, separadores via border en cada card */

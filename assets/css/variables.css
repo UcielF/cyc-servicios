@@ -35,7 +35,7 @@
   --color-border:       rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(245, 196, 0, 0.35);
   --color-overlay:      rgba(13, 13, 13, 0.96);
-  --color-surface-light: #b8b7b7;          /* fondo claro — sección Servicios */
+  --color-surface-light: #f9f9f9;          /* fondo claro — sección Servicios */
   --color-text-invert:   #0d0d0d;          /* texto negro sobre fondo claro */
 
   /* --- Tipografía — Familias --- */

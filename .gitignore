@@ -107,3 +107,4 @@ build/
 # --- Tests locales y screenshots de prueba ---
 /test-screenshots/
 /local-tests/
+.gstack/

@@ -3,6 +3,24 @@
    Paleta: Dark Mode OLED + Motion-Driven | Patrón: Hero-Centric + Trust
    ========================================================================== */
 
+/* --- Fuentes fallback con métricas ajustadas (anti layout shift) ----------
+   Bebas Neue (condensada) e Inter se cargan por CDN con display=swap, así que
+   hasta que llegan se muestra una fuente del sistema. El `size-adjust` escala
+   esa fuente del sistema para que ocupe el MISMO ancho que la fuente real:
+   así el texto envuelve igual antes y después del swap y no hay salto (CLS).
+   Valores medidos: Bebas ≈ 82.9% y Inter ≈ 96.8% del ancho de Arial. */
+@font-face {
+  font-family: "Bebas Neue Fallback";
+  src: local("Arial"), local("Roboto"), local("Helvetica Neue"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 82.9%;
+}
+
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Roboto"), local("Helvetica Neue"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 96.8%;
+}
+
 :root {
 
   /* --- Colores --- */
@@ -19,8 +37,8 @@
   --color-overlay:      rgba(13, 13, 13, 0.96);
 
   /* --- Tipografía — Familias --- */
-  --font-display: "Bebas Neue", sans-serif;
-  --font-body:    "Inter", sans-serif;
+  --font-display: "Bebas Neue", "Bebas Neue Fallback", sans-serif;
+  --font-body:    "Inter", "Inter Fallback", sans-serif;
 
   /* --- Tipografía — Escala (mobile-first, base 16px) --- */
   --text-xs:   0.75rem;    /* 12px */

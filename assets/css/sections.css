@@ -295,32 +295,245 @@
 .section--proyectos {
   padding-block: var(--space-20) var(--space-32);
   background-color: var(--color-bg-alt);
-  min-height: 320px;
+}
+
+/* --- Filtros (pills) ------------------------------------------------------ */
+.proyectos-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-12);
+  /* Scroll horizontal en mobile cuando las pills no entran */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: var(--space-1);
+}
+
+.proyectos-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.proyectos-filter {
+  flex: 0 0 auto;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.proyectos-filter:hover,
+.proyectos-filter:focus-visible {
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+  outline: none;
+}
+
+.proyectos-filter--active,
+.proyectos-filter--active:hover {
+  color: var(--color-text-invert);
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* --- Grid + colapso "Ver más" --------------------------------------------- */
+.proyectos-grid-wrap {
+  position: relative;
+}
+
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* Difuminado inferior: solo visible cuando la grilla está colapsada.
+   Gradiente al fondo + blur creciente hacia el borde (mask) → "se difumina". */
+.proyectos-grid-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: var(--space-32);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  background: linear-gradient(to bottom, transparent 0%, var(--color-bg-alt) 92%);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 65%);
+  mask-image: linear-gradient(to bottom, transparent, #000 65%);
+}
+
+.proyectos-grid-wrap.is-collapsed .proyectos-grid-fade {
+  opacity: 1;
+}
+
+/* Botón "Ver más / Ver menos" */
+.proyectos-more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-10);
+}
+
+.proyectos-more__btn[hidden] {
+  display: none;
+}
+
+.proyectos-more__chevron {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-base);
+}
+
+.proyectos-more__btn[aria-expanded="true"] .proyectos-more__chevron {
+  transform: rotate(180deg);
+}
+
+@media (min-width: 640px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .proyectos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Card ----------------------------------------------------------------- */
+.project-card {
+  position: relative;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.project-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-base);
+}
+
+/* Disparador: cubre toda la card y abre el lightbox */
+.project-card__trigger {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.project-card__trigger:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -4px;
+}
+
+/* Media + badge + overlay */
+.project-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin: 0;
+  background-color: var(--color-bg-alt);
+}
+
+.project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-card__media img {
+  transform: scale(1.05);
+}
+
+.project-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: var(--z-base);
+  padding: var(--space-1) var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-invert);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-sm);
+}
+
+/* Overlay oscuro + ícono expand, visible al hover */
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-}
-
-.proyectos-placeholder {
-  width: 100%;
-  text-align: center;
-}
-
-.proyectos-placeholder__eyebrow {
-  display: block;
-  font-size: var(--text-xs);
-  font-weight: var(--weight-medium);
+  justify-content: center;
+  background-color: var(--color-overlay);
   color: var(--color-accent);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: var(--space-4);
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
 
-.proyectos-placeholder__title {
+.project-card:hover .project-card__overlay,
+.project-card__trigger:focus-visible ~ .project-card__media .project-card__overlay {
+  opacity: 1;
+}
+
+.project-card__overlay svg {
+  width: 40px;
+  height: 40px;
+  transform: scale(0.85);
+  transition: transform var(--transition-base);
+}
+
+.project-card:hover .project-card__overlay svg {
+  transform: scale(1);
+}
+
+/* Cuerpo */
+.project-card__body {
+  padding: var(--space-5) var(--space-6) var(--space-6);
+}
+
+.project-card__title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: var(--color-text-muted);
+  font-size: var(--text-2xl);
   text-transform: uppercase;
-  opacity: 0.35;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin-bottom: var(--space-2);
+}
+
+.project-card__meta {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-light);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
   max-width: none;
 }
 

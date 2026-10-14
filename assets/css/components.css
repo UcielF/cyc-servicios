@@ -527,5 +527,143 @@
 }
 
 
-/* === Etapa 5: Galería / lightbox =========================================== */
+/* === Etapa 5: Lightbox de proyectos ======================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);   /* 90 — sobre el header (50) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-6);
+  opacity: 0;   /* GSAP anima desde aquí */
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-overlay);
+}
+
+/* Figura + imagen */
+.lightbox__figure {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 1100px;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: calc(100vh - var(--space-32));
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-base);
+  will-change: transform, opacity;
+}
+
+/* Botón cerrar */
+.lightbox__close {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.lightbox__close:hover,
+.lightbox__close:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-border-hover);
+  outline: none;
+}
+
+.lightbox__close svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Contador */
+.lightbox__counter {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+/* Flechas de navegación */
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-bg-alt);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.lightbox__nav:hover,
+.lightbox__nav:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-border-hover);
+  outline: none;
+}
+
+.lightbox__nav svg {
+  width: 26px;
+  height: 26px;
+}
+
+.lightbox__nav--prev {
+  left: var(--space-4);
+}
+
+.lightbox__nav--next {
+  right: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .lightbox__nav--prev {
+    left: var(--space-8);
+  }
+  .lightbox__nav--next {
+    right: var(--space-8);
+  }
+}
+
+/* Oculta las flechas cuando la galería tiene una sola imagen */
+.lightbox--single .lightbox__nav {
+  display: none;
+}
+
+
 /* === Etapa 7: Footer ======================================================= */

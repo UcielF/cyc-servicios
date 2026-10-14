@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNav();
   initContact();
   initServicios();
+  initProyectos();
 
   if (!prefersReducedMotion) {
     initAnimations();

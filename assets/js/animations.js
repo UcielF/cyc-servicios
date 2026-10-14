@@ -58,6 +58,26 @@ function initAnimations() {
       scrollTrigger: { trigger: ".servicios-grid", start: "top 85%" },
     }
   );
+
+  /* --- Proyectos: header + filtros + cards stagger ------------------------ */
+  gsap.fromTo(
+    [".section--proyectos .section-header", ".proyectos-filters"],
+    { y: 30, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: "power3.out",
+      scrollTrigger: { trigger: ".section--proyectos", start: "top 80%" },
+    }
+  );
+
+  gsap.fromTo(".project-card",
+    { y: 64, opacity: 0 },
+    {
+      y: 0, opacity: 1, duration: 0.8, stagger: { amount: 0.9 }, ease: "power3.out",
+      clearProps: "transform",  /* libera el transform → el filtrado y el hover vuelven a funcionar */
+      scrollTrigger: { trigger: ".proyectos-grid", start: "top 85%" },
+    }
+  );
+
   /* --- La Empresa: parallax fondo ----------------------------------------- */
   /* yPercent: -15 → +15 (simétrico): imagen se desplaza ±15% de su propia
      altura mientras pasa por el viewport. Con height:150% en CSS la imagen

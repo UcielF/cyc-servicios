@@ -154,31 +154,60 @@
   text-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
 }
 
-/* Grid pegado: gap 0, separadores via border en cada card */
+/* Grid de servicios: 1 columna en mobile, 2 en tablet y 6 en desktop
+   (3 tarjetas arriba + 2 centradas abajo). Bordes rectos, sin carrusel. */
 .servicios-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: var(--space-6);
+  /* Aire vertical para que la sombra del hover no quede recortada al elevarse */
+  padding-block: var(--space-8);
 }
 
+/* Tablet: 2 columnas; la 5ª tarjeta queda sola y centrada */
 @media (min-width: 640px) {
   .servicios-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
 
-@media (min-width: 1024px) {
-  .servicios-grid {
-    grid-template-columns: repeat(4, 1fr);
+  .service-card {
+    grid-column: auto;
+  }
+
+  .service-card:nth-child(5) {
+    justify-self: center;
+    width: 100%;
   }
 }
 
-/* Card — ángulo recto, sin gap */
+/* Desktop: 6 columnas → 3 tarjetas (span 2) arriba y 2 centradas abajo */
+@media (min-width: 1024px) {
+  .servicios-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .service-card {
+    grid-column: span 2;
+  }
+
+  .service-card:nth-child(4) {
+    grid-column: 2 / 4;
+  }
+
+  .service-card:nth-child(5) {
+    grid-column: 4 / 6;
+    justify-self: auto;
+    width: auto;
+  }
+}
+
+/* Tarjeta — bordes rectos, misma elevación al hover */
 .service-card {
   position: relative;
   background-color: var(--color-bg-alt);
-  border-right: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  overflow: hidden;
   transition:
     border-color var(--transition-base),
     box-shadow var(--transition-base),
@@ -190,45 +219,6 @@
   transform: translateY(-6px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
   z-index: var(--z-base);
-}
-
-/* Quitar borde derecho sobrante según columnas activas */
-@media (max-width: 639px) {
-  .service-card {
-    border-right: none;
-  }
-}
-
-@media (min-width: 640px) and (max-width: 1023px) {
-  .service-card:nth-child(2n) {
-    border-right: none;
-  }
-}
-
-@media (min-width: 1024px) {
-  .service-card:nth-child(4n) {
-    border-right: none;
-  }
-}
-
-/* Quitar borde inferior de la última fila */
-@media (max-width: 639px) {
-  .service-card:last-child {
-    border-bottom: none;
-  }
-}
-
-@media (min-width: 640px) and (max-width: 1023px) {
-  .service-card:nth-last-child(-n+2):nth-child(2n+1),
-  .service-card:nth-last-child(1) {
-    border-bottom: none;
-  }
-}
-
-@media (min-width: 1024px) {
-  .service-card:nth-child(n+5) {
-    border-bottom: none;
-  }
 }
 
 /* Disparador: cubre toda la tarjeta y la hace clickeable (abre el modal) */
@@ -450,7 +440,7 @@
   outline-offset: -4px;
 }
 
-/* Media + badge + overlay */
+/* Media + overlay */
 .project-card__media {
   position: relative;
   aspect-ratio: 4 / 3;
@@ -468,22 +458,6 @@
 
 .project-card:hover .project-card__media img {
   transform: scale(1.05);
-}
-
-.project-card__badge {
-  position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
-  z-index: var(--z-base);
-  padding: var(--space-1) var(--space-3);
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-text-invert);
-  background-color: var(--color-accent);
-  border-radius: var(--radius-sm);
 }
 
 /* Overlay oscuro + ícono expand, visible al hover */
@@ -616,40 +590,32 @@
 
 .empresa__stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 768px) {
   .empresa__stats-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .empresa-stat {
   padding: var(--space-8) var(--space-6);
-  border-right: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.empresa-stat:nth-child(2n) {
-  border-right: none;
+/* Mobile: apilado en una columna, divisor inferior entre stats */
+.empresa-stat:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
 }
 
+/* Desktop: tres columnas, divisores verticales entre ellas */
 @media (min-width: 768px) {
-  .empresa-stat:nth-child(2n) {
+  .empresa-stat:not(:last-child) {
+    border-bottom: none;
     border-right: 1px solid var(--color-border);
-  }
-  .empresa-stat:last-child {
-    border-right: none;
-  }
-}
-
-/* Borde inferior en mobile para separar las dos filas */
-@media (max-width: 767px) {
-  .empresa-stat:nth-child(-n+2) {
-    border-bottom: 1px solid var(--color-border);
   }
 }
 

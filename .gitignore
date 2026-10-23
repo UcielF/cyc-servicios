@@ -17,6 +17,8 @@ credenciales.*
 deploy-config.*
 .deployignore
 ftp-credentials.*
+deploy.env
+deploy.env.local
 
 # --- Sistema operativo (Fedora/KDE) ---
 .directory

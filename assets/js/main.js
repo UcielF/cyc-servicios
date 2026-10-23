@@ -23,8 +23,9 @@ function initServicios() {
   const modal = document.getElementById("servicio-modal");
   if (!modal) return;
 
-  const dialog   = modal.querySelector(".servicio-modal__dialog");
-  const mediaImg = modal.querySelector(".servicio-modal__media img");
+  const dialog     = modal.querySelector(".servicio-modal__dialog");
+  const mediaFigure = modal.querySelector(".servicio-modal__media");
+  const mediaImg   = modal.querySelector(".servicio-modal__media img");
   const titleEl  = modal.querySelector(".servicio-modal__title");
   const descEl   = modal.querySelector(".servicio-modal__desc");
   const closeEl  = modal.querySelector(".servicio-modal__close");
@@ -41,8 +42,17 @@ function initServicios() {
     const title = card.querySelector(".service-card__title").textContent;
     const desc  = card.querySelector(".service-card__desc").textContent;
 
-    mediaImg.src       = img.currentSrc || img.src;
-    mediaImg.alt       = img.alt || "";
+    // La tarjeta puede no tener imagen todavía (espacio reservado): ocultar el media del modal
+    if (img) {
+      mediaImg.src = img.currentSrc || img.src;
+      mediaImg.alt = img.alt || "";
+      mediaFigure.hidden = false;
+    } else {
+      mediaImg.removeAttribute("src");
+      mediaImg.alt = "";
+      mediaFigure.hidden = true;
+    }
+
     titleEl.textContent = title;
     descEl.textContent  = desc;
 

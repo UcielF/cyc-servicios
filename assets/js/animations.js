@@ -50,11 +50,11 @@ function initAnimations() {
     }
   );
 
-  gsap.fromTo(".service-card",
-    { y: 64, opacity: 0 },
+  gsap.fromTo(".section--servicios .service-card",
+    { y: 40, opacity: 0 },
     {
-      y: 0, opacity: 1, duration: 0.8, stagger: 0.14, ease: "power3.out",
-      clearProps: "transform",  /* libera el transform inline → el hover translateY vuelve a funcionar */
+      y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.12,
+      clearProps: "transform",  /* libera el transform para que el hover (translateY) funcione */
       scrollTrigger: { trigger: ".servicios-grid", start: "top 85%" },
     }
   );

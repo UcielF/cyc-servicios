@@ -2,42 +2,73 @@
 
 ---
 
-## Sesión 2026-10-23 — Carrusel de Servicios + Deploy a Hostinger
+## Sesión 2026-10-23 — Grid de Servicios, contenido/OG, Proyectos y Deploy
 
-> Trabajo **sin commitear** todavía (ver "Estado git" al final).
+> Pusheado a `origin/main` (commits `316a5be` + `732459e`) — ver "Estado git" al final.
 
-### 1. Sección Servicios: grid → carrusel horizontal infinito
+### 1. Rediseño de Servicios: carrusel → grid 3+2 (bordes rectos)
 
-La grilla estática de tarjetas pasó a ser un **marquee** (auto-scroll horizontal
-continuo) que se pausa al pasar el cursor. Imágenes más grandes y mejor distribución.
+Se descartó el carrusel marquee (intento de esta misma sesión, nunca commiteado como
+final) y Servicios volvió a ser un **grid**, ahora con layout 3+2, tarjetas del mismo
+tamaño y bordes rectos.
 
-- **Estructura (`index.html`)**: las 5 `.service-card` quedaron envueltas en
-  `.servicios-marquee` (viewport con `overflow: hidden`) → `.servicios-track`
-  (la pista que se desplaza).
-- **CSS (`sections.css`)**: se reemplazó todo el `grid` + las reglas de bordes por
-  `nth-child` por:
-  - `.servicios-track`: `display: flex` + animación `servicios-scroll`
-    (`translateX` de 0 a `-50%`), `linear infinite`.
-  - Pausa con `.servicios-marquee:hover` **y** `:focus-within` (también teclado).
-  - `.service-card`: slide de ancho fijo `clamp(280px, 82vw, 420px)`, `margin-right`
-    como separación (clave para el loop sin salto), `border-radius: --radius-lg`,
-    `overflow: hidden`.
-  - Máscara de difuminado en los bordes izq/der; `padding-block` para que no se
-    recorte la sombra del hover.
-  - Bloque `prefers-reduced-motion`: sin animación, pista desplazable a mano
-    (`overflow-x: auto`).
-- **JS (`main.js`)**: nueva `initServiciosMarquee()` que **clona el set de tarjetas
-  una vez** (copias con `aria-hidden` + `tabindex="-1"`) para el loop perfecto al
-  desplazar `-50%`, y fija `--servicios-scroll-duration` según el ancho real
-  (~70 px/s, recalcula en `resize`). No clona ni anima si hay movimiento reducido.
-  Se llama **antes** de `initServicios()`.
-- **Animación de entrada (`animations.js`)**: el trigger `.servicios-grid` ya no
-  existe; ahora la entrada al scroll anima `.servicios-marquee` entero (antes era
-  stagger por card, que chocaba con la pista en movimiento).
+- **Estructura (`index.html`)**: las 5 `.service-card` quedaron en un único
+  `.servicios-grid` (se eliminó el doble wrapper `.servicios-marquee`/`.servicios-track`).
+  Orden: 1) Media y Baja Tensión · 2) Alumbrado Público y Mantenimiento ·
+  3) Construcción y Movimiento de Suelo · 4) Redes Cloacales e Hídricas ·
+  5) Obras Viales y Ciclovías con Cordón Cuneta.
+- **CSS (`sections.css`)**, mobile-first:
+  - Mobile (<640px): 1 columna.
+  - Tablet (640–1023px): `repeat(2, 1fr)`; la 5ª card sola y centrada
+    (`justify-self: center; width: 100%`).
+  - Desktop (≥1024px): `repeat(6, 1fr)`, cada card `grid-column: span 2` (3 arriba),
+    y `nth-child(4) → 2 / 4` + `nth-child(5) → 4 / 6` centradas en la fila 2.
+  - `.service-card`: sin `flex/width/margin-right`, `border-radius: 0` (bordes rectos),
+    `gap: --space-6`, sin `overflow: hidden` en el contenedor. Se conservó el hover
+    (elevación + sombra) y la estructura interna de la card.
+- **JS**: se **eliminó** `initServiciosMarquee()` de `main.js` (clonado de cards +
+  `--servicios-scroll-duration`). En `animations.js` la entrada al scroll pasó a
+  **stagger real** sobre `.section--servicios .service-card` (trigger `.servicios-grid`),
+  con `clearProps: "transform"` para no pisar el hover.
 
-> Nota: el contenido de las 5 tarjetas (incluida la 5ª, "Obras Viales y Ciclovías
-> con Cordón Cuneta", con **placeholder** "Imagen próximamente" porque falta la foto)
-> ya venía del árbol de trabajo de una sesión previa, también sin commitear.
+#### Imágenes de Servicios (nombre = servicio)
+- Renombradas a su servicio: `media-baja-tension.jpeg`, `alumbrado-mantenimiento.jpeg`,
+  `movimiento-suelo.jpeg`, `obras-viales.jpeg`. `ducto2.jpeg` se mantiene para "Redes
+  Cloacales e Hídricas" (sin imagen propia aún). Borradas `transformador.jpg`,
+  `servicio2.jpg`, `tendidos-subterraneos.jpeg`.
+- La 5ª card ("Obras Viales") pasó de **placeholder "Imagen próximamente"** a foto real
+  (`obras-viales.jpeg`); se eliminó el CSS del placeholder.
+- Pendiente: `movimiento-suelo.jpeg` pesa ~730 KB; servicios siguen en JPEG (no WebP).
+
+#### Textos — tagline unificado
+Frase única **"Obras viales, civiles, eléctricas y servicios urbanos e industriales."**
+en: subtítulo del hero, `.footer-tagline`, `meta[name="description"]` y `og:description`
+(estas dos prefijadas con "Desarrollo de Infraestructura Integral —").
+
+#### Open Graph / preview de WhatsApp
+- Agregados `og:url` (`https://cycservicios.com.ar/`), `og:image`
+  (`https://cycservicios.com.ar/assets/img/og-image.png`, URL absoluta),
+  `og:image:width`/`height` (1200×630) y `og:image:alt`.
+- Generada `assets/img/og-image.png` (1200×630, "C&C" blanco sobre `#0d0d0d`, réplica
+  del logo del header; Bebas Neue bajada de `google/fonts`). El preview recién funciona
+  **tras deployar**; WhatsApp cachea → refrescar con el debugger de Facebook.
+
+#### Proyectos — filtros, imágenes limpias y altas/bajas
+- Filtros renombrados (solo etiqueta; `data-category` intactos, no rompe el filtrado):
+  "Cordones y Veredas" → **"Cordon Cuneta y Ciclovía"**, "Cableado Subterráneo" → **"Cloacas"**.
+- **Imágenes limpias**: se quitaron los 64 `.project-card__badge` (etiqueta sobre la foto)
+  + su CSS. Queda solo el overlay con ícono de lupa al hover.
+- Altas/bajas: borradas `industrial-12` y `vialidad-06` (cards quitadas); `media-tension-09`
+  reemplazada por foto nueva + agregada `media-tension-10`; agregadas `vialidad-18`…`23`.
+  Conversión a WebP con ImageMagick (full ≤1280 q80 + thumb ≤800); JPEG crudos de WhatsApp borrados.
+- **Conteos nuevos**: vialidad **22** (hueco en el `06` → 01-05, 07-23), media-tension **10**,
+  subterraneo **26**, industrial **11**.
+
+#### Empresa — métricas
+Reducidas a **3** y centradas: `10+` años de experiencia · `100+` proyectos realizados ·
+`100%` confiabilidad. CSS de 4 → 3 columnas (desktop `repeat(3, 1fr)`, mobile 1 col apilada;
+divisores con `:not(:last-child)`). El manifiesto pasó de "Más de 5 años" a
+"Más de 10 años" (commit `732459e`).
 
 ### 2. Despliegue a Hostinger (rsync sobre SSH)
 
@@ -51,31 +82,23 @@ Se armó el flujo de deploy para el sitio estático. Verificado por SSH.
 - **`deploy.env`** (nuevo, **gitignored**): datos reales de conexión.
 - **`.gitignore`**: se agregó `deploy.env` / `deploy.env.local`.
 
-**Datos de Hostinger (verificados por SSH el 2026-10-23):**
-- Cuenta **compartida** con ovidec y perez-carrazco: `u919661691@147.93.39.28`,
-  puerto SSH `65002`.
-- Clave autorizada por el server: **`~/.ssh/id_ed25519`** (fijada en `deploy.env`).
-  OJO: `~/.ssh/id_ed25519_hostinger` **no** está autorizada, por eso los alias
-  `hostinger-perez` / `hostinger-panel` de `~/.ssh/config` caen a pedir contraseña.
-- Web root: `/home/u919661691/domains/cycservicios.com.ar/public_html`
-- Estado del server: la carpeta del dominio existe pero su `public_html` solo tenía
-  `default.php` (placeholder de Hostinger) → **el sitio aún no se desplegó**.
+**Datos de Hostinger:** host, usuario, puerto SSH, web root y clave SSH viven en
+`deploy.env` (gitignored, **no sube a git**); plantilla con instrucciones en
+`deploy.env.example`. Notas operativas (sin exponer la conexión):
+- Cuenta **compartida** con otros proyectos del mismo servidor Hostinger.
+- La autenticación va por clave SSH ya configurada (ver `deploy.env`). Si algún alias
+  de `~/.ssh/config` pide contraseña, es porque esa clave no está autorizada en el server.
+- Estado del server (al 2026-10-23): la carpeta del dominio existe pero su `public_html`
+  solo tenía `default.php` (placeholder de Hostinger) → **el sitio aún no se desplegó**.
 
 Deploy: `./deploy.sh --dry-run` para simular, `./deploy.sh` para publicar.
 
-### 3. Estado git (todo sin commitear)
+### 3. Estado git
 
-```
- M .gitignore
- M assets/css/sections.css
- M assets/js/animations.js
- M assets/js/main.js
- M index.html
-?? context.md
-?? deploy.env.example
-?? deploy.sh
-(deploy.env está gitignored — no aparece)
-```
+Todo lo de esta sesión (incluido el setup de deploy) quedó en `316a5be`
+("modificacion de servicios, galeria de proyectos"), con un follow-up `732459e`
+("10años": manifiesto de Empresa "Más de 5 años" → "Más de 10 años"). Ambos
+**pusheados** a `origin/main`. (`deploy.env` sigue gitignored.)
 
 ---
 
@@ -127,10 +150,12 @@ se descartó la idea de una página aparte).
 ---
 
 ## Pendientes / próximos pasos
-- **Publicar el sitio** a Hostinger (`./deploy.sh`) y decidir si limpiar el `default.php`
-  del server (una corrida con `--delete` lo elimina; esa carpeta es exclusiva de cyc).
-- **Commitear** el carrusel de Servicios + el setup de deploy (hoy está todo sin commitear).
-- Conseguir la **foto real** de la 5ª tarjeta (Obras Viales y Ciclovías) y reemplazar el placeholder.
-- Optimizar el resto de imágenes: hero `construction.jpeg` (~3.3 MB) y empresa/servicios (Etapa 7).
+- **Publicar** a Hostinger (`./deploy.sh`); decidir si limpiar el `default.php` del
+  server (`--delete` lo elimina; esa carpeta es exclusiva de cyc).
+- Convertir a WebP las imágenes de Servicios y **optimizar `movimiento-suelo.jpeg`** (~730 KB).
+- (Opcional) Imagen propia para "Redes Cloacales e Hídricas" (hoy usa `ducto2.jpeg`).
+- (Opcional) Renombrar `vialidad-07..23` para cerrar el hueco del `06`.
+- (Opcional) Unificar "Cordon" (filtro, sin tilde) vs "Cordón" (card de Servicios).
+- Optimizar el resto de imágenes: hero `construction.jpeg` (~3.3 MB) y empresa (Etapa 7).
 - (Opcional) Unificar el número de WhatsApp del botón de Contacto si se quiere el mismo.
 - (Opcional) Fallback `<picture>` jpeg si apareciera algún navegador sin soporte webp.

@@ -468,31 +468,15 @@
   width: 100%;
 }
 
+.contacto-form__submit svg {
+  width: 20px;
+  height: 20px;
+}
+
 @media (min-width: 640px) {
   .contacto-form__submit {
     width: auto;
   }
-}
-
-.form-status {
-  margin-top: var(--space-4);
-  font-size: var(--text-sm);
-  padding: var(--space-4) var(--space-5);
-  border-radius: var(--radius-sm);
-  border-left: 3px solid;
-  max-width: none;
-}
-
-.form-status--success {
-  color: #4ade80;
-  background-color: rgba(74, 222, 128, 0.06);
-  border-color: #4ade80;
-}
-
-.form-status--error {
-  color: #f87171;
-  background-color: rgba(248, 113, 113, 0.06);
-  border-color: #f87171;
 }
 
 

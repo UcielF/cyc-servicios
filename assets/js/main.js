@@ -110,41 +110,27 @@ function initServicios() {
   });
 }
 
+/* ==========================================================================
+   Formulario de contacto — arma un mensaje y abre WhatsApp
+   ========================================================================== */
 function initContact() {
   const form = document.querySelector(".contacto-form");
   if (!form) return;
 
-  const statusEl  = form.querySelector(".form-status");
-  const submitBtn = form.querySelector(".contacto-form__submit");
-  const originalLabel = submitBtn.textContent;
+  const whatsappNumber = "5491167995686";
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Enviando...";
-    statusEl.hidden = true;
 
-    try {
-      const res  = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: new FormData(form),
-      });
-      const data = await res.json();
+    const nombre  = form.nombre.value.trim();
+    const email   = form.email.value.trim();
+    const mensaje = form.mensaje.value.trim();
 
-      if (data.success) {
-        statusEl.textContent = "¡Mensaje enviado! Te contactamos a la brevedad.";
-        statusEl.className   = "form-status form-status--success";
-        form.reset();
-      } else {
-        throw new Error(data.message);
-      }
-    } catch {
-      statusEl.textContent = "Hubo un error al enviar. Intentá de nuevo o escribinos por WhatsApp.";
-      statusEl.className   = "form-status form-status--error";
-    } finally {
-      statusEl.hidden      = false;
-      submitBtn.disabled   = false;
-      submitBtn.textContent = originalLabel;
-    }
+    const lineas = ["Hola, los contacto desde el sitio web.", `Nombre: ${nombre}`];
+    if (email) lineas.push(`Email: ${email}`);
+    lineas.push(`Mensaje: ${mensaje}`);
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(lineas.join("\n"))}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   });
 }

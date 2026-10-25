@@ -2,6 +2,57 @@
 
 ---
 
+## Sesión 2026-10-24 — Contacto por WhatsApp, email canónico e íconos
+
+> Trabajo en working tree (sin commit — el flujo es sin commits automáticos).
+
+### 1. Sección #contacto: formulario que abre WhatsApp (sin backend)
+
+El formulario dejó de enviarse a Web3Forms; ahora **arma un mensaje y abre WhatsApp**
+con el texto precargado.
+
+- **Campos (`index.html`)**: Nombre (obligatorio), Email (**opcional**), Mensaje
+  (obligatorio). Se **quitó** el campo Teléfono. Se sacó `novalidate` (vale la
+  validación nativa HTML), los `<input hidden>` de Web3Forms, el honeypot `botcheck`
+  y el `<p class="form-status">`.
+- **Botón "Enviar por WhatsApp"**: con ícono SVG de WhatsApp a la izquierda. Apunta a
+  **+54 9 11 6799-5686** (`wa.me/5491167995686`).
+- **`main.js`**: `initContact()` reescrito — ya no hace `fetch`; en el `submit`
+  (`preventDefault`) arma líneas "Hola, los contacto desde el sitio web." / `Nombre:` /
+  `Email:` (solo si se completó) / `Mensaje:` y abre
+  `window.open(url, "_blank", "noopener,noreferrer")`. Sigue llamado en el `DOMContentLoaded`.
+- **Columna derecha (`.contacto-info`)**: el bloque "Instagram" pasó a **"Correo
+  electrónico"** con `mailto:contacto@cycservicios.com.ar` (clase `.contacto-info__link`).
+  Se **eliminó** el botón ghost "Escribir por WhatsApp" que estaba debajo.
+- **CSS**: en `components.css` se **restauraron** los estilos del formulario
+  (`.form-group`, `.form-label`, `.form-input` y variantes, `.contacto-form__submit`);
+  **no** se restauró `.form-status`/`--success`/`--error` (ya no hay envío asíncrono).
+  En `sections.css` se quitaron los estilos `.contacto-directo*` de un intento
+  intermedio (enlaces directos WhatsApp+mail) que se descartó a favor del formulario.
+
+### 2. Email canónico e íconos de contacto (teléfono / mail / ubicación)
+
+- **Email** `contacto@cycservicios.com.ar` agregado como `mailto:` al **menú del header**
+  (`.nav-overlay__contact`) y al **footer** (`.footer-contact`), además de la sección Contacto.
+- **Íconos SVG inline** (estilo Lucide, stroke, `currentColor`) de teléfono, sobre (mail)
+  y pin (ubicación) en las 3 zonas, reutilizando los mismos paths:
+  - **Menú header (overlay)**: ícono en cada teléfono, mail y dirección; íconos en
+    `--color-accent` (16px). Los items se hicieron `inline-flex` con gap.
+  - **Sección Contacto**: ícono dentro de cada `.contacto-info__label` (Teléfonos / Correo
+    electrónico / Dirección), 15px, heredan el amarillo del label.
+  - **Footer**: ícono en cada teléfono, mail y dirección; `--color-accent` (16px).
+
+### 3. Adaptaciones mobile
+
+- **Botón "Enviar por WhatsApp"**: `justify-content: center` para centrar ícono+texto
+  cuando ocupa el 100% del ancho en mobile (en desktop vuelve a `width: auto`).
+- **Menú del header** (`.nav-overlay__contact`): era fila horizontal con wrap y se
+  apretaba en pantallas angostas → pasó a **lista vertical** (`flex-direction: column`,
+  alineada a la izquierda) en mobile/tablet, y **vuelve a fila horizontal** en
+  desktop (≥1024px). La sección Contacto y el footer ya apilaban en 1 columna, no cambiaron.
+
+---
+
 ## Sesión 2026-10-23 — Grid de Servicios, contenido/OG, Proyectos y Deploy
 
 > Pusheado a `origin/main` (commits `316a5be` + `732459e`) — ver "Estado git" al final.
@@ -157,5 +208,9 @@ se descartó la idea de una página aparte).
 - (Opcional) Renombrar `vialidad-07..23` para cerrar el hueco del `06`.
 - (Opcional) Unificar "Cordon" (filtro, sin tilde) vs "Cordón" (card de Servicios).
 - Optimizar el resto de imágenes: hero `construction.jpeg` (~3.3 MB) y empresa (Etapa 7).
-- (Opcional) Unificar el número de WhatsApp del botón de Contacto si se quiere el mismo.
+- Footer: hay un `<a>` de Instagram **sin texto** (`@hernan_calvi`); decidir si ponerle
+  la cuenta con su ícono o quitarlo.
 - (Opcional) Fallback `<picture>` jpeg si apareciera algún navegador sin soporte webp.
+
+> Nota: el formulario de Contacto y el botón flotante de WhatsApp ya apuntan al mismo
+> número (+54 9 11 6799-5686). El botón ghost de Contacto con el otro número se eliminó.
